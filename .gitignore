@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# 가상환경
+venv/
+env/
+
+# 모델·데이터 (원하면 포함)
+fires_prepared.npy
+fires_test_*.npy
+
+# IDE
+.vscode/
+*.swp
+
+# OS
+.DS_Store

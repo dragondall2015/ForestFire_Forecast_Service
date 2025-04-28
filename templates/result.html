@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Result – 산불 예측{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="alert alert-success text-center">
+      <h4 class="alert-heading">산불 예측 결과</h4>
+      <p class="display-6">{{ prediction }} m²</p>
+    </div>
+    <div class="text-center">
+      <a href="{{ url_for('prediction') }}" class="btn btn-outline-info me-2">Again</a>
+      <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

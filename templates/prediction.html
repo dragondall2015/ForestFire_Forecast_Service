@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}FF Prediction – 산불 예측{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h3 class="card-title mb-4">Fill in the data</h3>
+        <form method="POST" action="{{ url_for('prediction') }}">
+          {{ form.hidden_tag() }}
+          {% for field in [form.longitude, form.latitude, form.month, form.day,
+                           form.avg_temp, form.max_temp, form.max_wind_speed,
+                           form.avg_wind] %}
+          <div class="mb-3">
+            {{ field.label(class_="form-label") }}
+            {{ field(class_="form-control", placeholder=field.label.text) }}
+          </div>
+          {% endfor %}
+          <div class="d-grid">
+            {{ form.submit(class_="btn btn-info") }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
