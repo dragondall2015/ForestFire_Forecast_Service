@@ -16,3 +16,9 @@ fires_test_*.npy
 
 # OS
 .DS_Store
+
+# local data
+*.npy
+*.csv
+*.keras
+
