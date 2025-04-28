@@ -4,5 +4,6 @@ Flask-Bootstrap
 pandas
 numpy
 scikit-learn
-tensorflow-cpu==2.15.0     # ← tf만 명시, 'keras' 항목 제거
+tensorflow-cpu==2.15.0   # tf.keras 2.15 포함
+keras==2.15.0            # stand-alone keras 3 차단
 gunicorn
