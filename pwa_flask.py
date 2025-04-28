@@ -1,17 +1,15 @@
+# pwa_flask.py
 import os
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import joblib
 
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
 
 # ─────────────────────── 1. Flask 기본 셋업 ───────────────────────
 app = Flask(__name__)
@@ -20,25 +18,11 @@ Bootstrap(app)
 np.random.seed(42)
 
 # ─────────────────────── 2. 모델 로드 (tf.keras) ─────────────────
-model = model = tf.keras.models.load_model("fires_model_v3.keras", compile=False)
+MODEL_PATH = "fires_model_v3.keras"
+model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 
-# ─────────────────────── 3. 전처리 파이프라인 ────────────────────
-num_cols = ["longitude", "latitude", "avg_temp",
-            "max_temp", "max_wind_speed", "avg_wind"]
-cat_cols = ["month", "day"]
-
-def build_pipeline():
-    num_pipe = Pipeline([("scaler", StandardScaler())])
-    return ColumnTransformer([
-        ("num", num_pipe, num_cols),
-        ("cat", OneHotEncoder(handle_unknown="ignore"), cat_cols)
-    ])
-
-pipeline = build_pipeline()
-
-fires = pd.read_csv("sanbul2district-divby100.csv")
-fires["burned_area"] = np.log(fires["burned_area"] + 1)
-pipeline.fit(fires.drop(columns=["burned_area"]))
+# ─────────────────────── 3. 전처리 파이프라인 (load만)
+pipeline = joblib.load("pipeline.pkl")
 
 # ─────────────────────── 4. WTForms 입력 폼 ──────────────────────
 class LabForm(FlaskForm):
@@ -80,6 +64,5 @@ def prediction():
 
 # ─────────────────────── 6. 실행 엔트리 ──────────────────────────
 if __name__ == "__main__":
-    # Render는 $PORT 환경변수를 보내줍니다.
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
