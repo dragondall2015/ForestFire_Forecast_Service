@@ -1,9 +1,8 @@
-Flask
-Flask-WTF
-Flask-Bootstrap
+tensorflow==2.16.1
+keras==3.2.1
+flask
+flask-bootstrap
+flask-wtf
+scikit-learn
 pandas
 numpy
-scikit-learn
-tensorflow-cpu==2.15.0   # tf.keras 2.15 포함
-keras==2.15.0            # stand-alone keras 3 차단
-gunicorn
