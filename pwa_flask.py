@@ -20,8 +20,7 @@ Bootstrap(app)
 np.random.seed(42)
 
 # ─────────────────────── 2. 모델 로드 (tf.keras) ─────────────────
-MODEL_PATH = "fires_model.keras"
-model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+model = model = tf.keras.models.load_model("fires_model_v3.keras", compile=False)
 
 # ─────────────────────── 3. 전처리 파이프라인 ────────────────────
 num_cols = ["longitude", "latitude", "avg_temp",
