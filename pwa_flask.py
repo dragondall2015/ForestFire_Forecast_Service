@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow import keras
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -23,7 +22,7 @@ np.random.seed(42)
 # ─────────────────────────────────────────────────────────
 # 2. 학습한 Keras 모델 로드
 # ─────────────────────────────────────────────────────────
-model = keras.models.load_model("fires_model.keras")
+model = tf.keras.models.load_model("fires_model.keras", compile=False)
 # ─────────────────────────────────────────────────────────
 # 3. 전처리 파이프라인 준비  (handle_unknown="ignore" 추가!)
 # ─────────────────────────────────────────────────────────
