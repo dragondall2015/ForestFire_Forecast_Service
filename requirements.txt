@@ -1,9 +1,11 @@
-tensorflow==2.16.1
-keras==3.2.1
-flask
-flask-bootstrap
-flask-wtf
-scikit-learn
-pandas
-numpy
-gunicorn
+# requirements.txt
+tensorflow-cpu==2.13.0      # 160 MB 정도(2.16.1은 590 MB → 메모리 폭발)
+keras==2.13.1               # 2.13 계열과 호환
+flask==3.1.0
+flask-bootstrap==3.3.7.1
+flask-wtf==1.2.2
+scikit-learn==1.6.1
+pandas==2.2.3
+numpy==1.26.4
+gunicorn==21.2.0
+joblib==1.4.2
