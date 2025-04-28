@@ -6,3 +6,4 @@ flask-wtf
 scikit-learn
 pandas
 numpy
+gunicorn
